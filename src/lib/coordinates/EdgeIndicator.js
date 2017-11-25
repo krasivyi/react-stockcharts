@@ -57,6 +57,10 @@ EdgeIndicator.propTypes = {
 		PropTypes.string,
 		PropTypes.func,
 	]),
+    lineStroke: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.func,
+	]),
 	itemType: PropTypes.oneOf(["first", "last"]).isRequired,
 	orient: PropTypes.oneOf(["left", "right"]),
 	edgeAt: PropTypes.oneOf(["left", "right"]),
@@ -109,7 +113,7 @@ function helper(props, moreProps) {
 function getEdge(props, moreProps, item) {
 	const { type: edgeType, displayFormat, edgeAt, yAxisPad, orient } = props;
 
-	const { yAccessor, fill, textFill, rectHeight, rectWidth, arrowWidth } = props;
+	const { yAccessor, fill, textFill, rectHeight, rectWidth, arrowWidth, lineStroke } = props;
 	const { fontFamily, fontSize } = props;
 
 	const { xScale, chartConfig: { yScale }, xAccessor } = moreProps;
@@ -121,9 +125,10 @@ function getEdge(props, moreProps, item) {
 		y1 = Math.round(yScale(yValue));
 
 	const [left, right] = xScale.range();
-	const edgeX = edgeAt === "left"
-		? left - yAxisPad
-		: right + yAxisPad;
+    const leftPos = left - yAxisPad,
+          rightPos = right + yAxisPad;
+
+	const edgeX = edgeAt === "left" ? leftPos : rightPos;
 
 	return {
 		// ...props,
@@ -133,12 +138,13 @@ function getEdge(props, moreProps, item) {
 		orient,
 		edgeAt: edgeX,
 		fill: functor(fill)(item),
+		lineStroke: functor(lineStroke)(item),
 		fontFamily, fontSize,
 		textFill: functor(textFill)(item),
 		rectHeight, rectWidth, arrowWidth,
-		x1,
+		x1: x1 > rightPos ? rightPos : x1,
 		y1,
-		x2: right,
+		x2: rightPos,
 		y2: y1,
 	};
 }
