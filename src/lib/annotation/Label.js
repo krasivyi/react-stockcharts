@@ -76,7 +76,7 @@ Label.contextTypes = {
 
 Label.defaultProps = {
 	...defaultProps,
-	selectCanvas: canvases => canvases.bg,
+	selectCanvas: canvases => canvases.axes,
 };
 
 function drawOnCanvas2(ctx, props, context, moreProps) {

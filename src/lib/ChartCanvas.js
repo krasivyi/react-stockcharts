@@ -977,8 +977,8 @@ class ChartCanvas extends Component {
 			this.clearThreeCanvas();
 
 			this.setState(state);
+			this.fullData = fullData;
 		}
-		this.fullData = fullData;
 	}
 	/*
 	componentDidUpdate(prevProps, prevState) {
