@@ -8,7 +8,7 @@ import { hexToRGBA, isDefined, isNotDefined, strokeDashTypes, getStrokeDasharray
 import GenericChartComponent from "../GenericChartComponent";
 import { getAxisCanvas } from "../GenericComponent";
 
-class StraightLine extends Component {
+class LoadingLine extends Component {
 	constructor(props) {
 		super(props);
 		this.renderSVG = this.renderSVG.bind(this);
@@ -90,7 +90,7 @@ function getLineCoordinates(type, xScale, yScale, xValue, yValue, width, height)
 		: { x1: xScale(xValue), y1: 0, x2: xScale(xValue), y2: height };
 }
 
-StraightLine.propTypes = {
+LoadingLine.propTypes = {
 	className: PropTypes.string,
 	type: PropTypes.oneOf(["vertical", "horizontal"]),
 	stroke: PropTypes.string,
@@ -109,7 +109,7 @@ StraightLine.propTypes = {
 	},
 };
 
-StraightLine.defaultProps = {
+LoadingLine.defaultProps = {
 	className: "line ",
 	type: "horizontal",
 	stroke: "#000000",
@@ -118,4 +118,4 @@ StraightLine.defaultProps = {
 	strokeDasharray: "Solid",
 };
 
-export default StraightLine;
+export default LoadingLine;
