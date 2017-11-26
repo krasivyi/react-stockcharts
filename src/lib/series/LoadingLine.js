@@ -19,6 +19,7 @@ class LoadingLine extends Component {
 		const { yValue, xValue } = this.props;
 		const { xScale } = moreProps;
 		const { chartConfig: { yScale, width, height } } = moreProps;
+		const {text, fontSize, textColor, loadingBg} = this.props
 
 		ctx.beginPath();
 
@@ -35,7 +36,7 @@ class LoadingLine extends Component {
 		ctx.closePath()
 		ctx.beginPath();
 
-		ctx.fillStyle="#1B1F27";
+		ctx.fillStyle=loadingBg;
 		ctx.fillRect(x1-width, y1, width, y2-1);
 
 		ctx.closePath()
@@ -43,10 +44,10 @@ class LoadingLine extends Component {
 
 		ctx.translate( x1-20, y1+height/2 );
 		ctx.rotate( 3 * Math.PI / 2 );
-		ctx.font = 18 + "px " + "Helvetica Neue, Helvetica, Arial, sans-serif";
-		ctx.fillStyle = "rgba(255,255,255,0.5)"
+		ctx.font = fontSize + "px " + "Helvetica Neue, Helvetica, Arial, sans-serif";
+		ctx.fillStyle = textColor
 		ctx.textAlign = "center";
-		ctx.fillText("LOADING...", 0, 0);
+		ctx.fillText(text, 0, 0);
 	}
 	render() {
 		return <GenericChartComponent
@@ -107,6 +108,10 @@ LoadingLine.propTypes = {
 		if (props.type === "vertical" && isNotDefined(props[propName])) return new Error("when type = `vertical` `xValue` is required");
 		// if (isDefined(props[propName]) && typeof props[propName] !== "number") return new Error("prop `xValue` accepts a number");
 	},
+	text: PropTypes.string,
+	fontSize: PropTypes.number,
+	textColor: PropTypes.string,
+	loadingBg: PropTypes.string
 };
 
 LoadingLine.defaultProps = {
@@ -116,6 +121,10 @@ LoadingLine.defaultProps = {
 	opacity: 0.5,
 	strokeWidth: 1,
 	strokeDasharray: "Solid",
+	text: "Loading...",
+	fontSize: 20,
+	textColor: "rgba(255,255,255,0.5)",
+	loadingBg: "#1B1F27"
 };
 
 export default LoadingLine;
