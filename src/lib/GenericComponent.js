@@ -463,6 +463,10 @@ export function getAxisCanvas(contexts) {
 	return contexts.axes;
 }
 
+export function getCircleCanvas(contexts) {
+	return contexts.pulsatingCircle;
+}
+
 export function getMouseCanvas(contexts) {
 	return contexts.mouseCoord;
 }

@@ -360,6 +360,7 @@ class ChartCanvas extends Component {
 			clearCanvas([
 				canvases.axes,
 				// canvases.hover,
+				canvases.pulsatingCircle,
 				canvases.mouseCoord
 			], this.props.ratio);
 		}
@@ -380,6 +381,7 @@ class ChartCanvas extends Component {
 				canvases.axes,
 				// canvases.hover,
 				canvases.mouseCoord,
+				canvases.pulsatingCircle,
 				canvases.bg
 			], this.props.ratio);
 		}
